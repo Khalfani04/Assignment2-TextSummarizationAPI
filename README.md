@@ -37,7 +37,8 @@ This project implements a simple API for text summarization. It uses a pre-train
 
 ## Architecture
 
-![image](https://github.com/user-attachments/assets/c0c75376-e954-4e13-a7dd-d9df5d2f68b9)
+![image](https://github.com/user-attachments/assets/f6000452-55aa-467f-bd8e-001bf4337a65)
+
 
 
 The Text Summarization API follows a simple architecture:

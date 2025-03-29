@@ -37,6 +37,8 @@ This project implements a simple API for text summarization. It uses a pre-train
 
 ## Architecture
 
+![Architecture Diagram](images/Screenshot%202025-03-28%20234445.png)
+
 The Text Summarization API follows a simple architecture:
 
 1.  A client (user or application) sends a **POST request** to the `/summarize` endpoint of the deployed API.
@@ -44,3 +46,18 @@ The Text Summarization API follows a simple architecture:
 3.  The backend of the API, built with **FastAPI**, receives the request containing the text to be summarized.
 4.  It utilizes a **pre-trained BART model** (`facebook/bart-large-cnn`) from the Hugging Face Transformers library to perform the summarization.
 5.  The summarized text is then returned to the client as a **JSON response**.
+
+## Deployment
+
+The API was deployed to Google Cloud Run using the following steps:
+
+1.  A Docker image was built using the provided `Dockerfile`.
+2.  The Docker image was tagged and pushed to Google Cloud Artifact Registry in the `northamerica-northeast2` region under the project `text-summarization-api-455107` and repository `text-summarization-repo`.
+3.  The service was deployed to Cloud Run using the following command:
+   ```bash
+   gcloud run deploy text-summarization-api \
+       --image=northamerica-northeast2-docker.pkg.dev/text-summarization-api-455107/text-summarization-repo/text-summarization-api:latest \
+       --platform=managed \
+       --region=northamerica-northeast2 \
+       --allow-unauthenticated \
+       --memory=4Gi
